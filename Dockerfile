@@ -4,7 +4,7 @@ ARG UID=1000
 RUN adduser -h /home/noroot -u ${UID} noroot -D
 
 RUN apk update && apk upgrade --available && sync
-RUN apk add git neovim neovim-doc
+RUN apk add git neovim neovim-doc ripgrep # required for grep usage in neovim lua config
 USER noroot
 WORKDIR /home/noroot
 
