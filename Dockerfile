@@ -5,6 +5,10 @@ RUN adduser -h /home/noroot -u ${UID} noroot -D
 
 RUN apk update && apk upgrade --available && sync
 RUN apk add git neovim neovim-doc ripgrep # required for grep usage in neovim lua config
+# C compiler and musl in addition for compiler (both are required for treesitter's parsers)
+RUN apk add gcc musl-dev
+# cc1 build-time dependency required for php treesitter's parser
+RUN apk add build-base
 USER noroot
 WORKDIR /home/noroot
 

@@ -13,4 +13,6 @@ return require('packer').startup(function(use)
 		'https://gitlab.com/__tpb/monokai-pro.nvim',
 		as = 'monokai-pro.nvim'
 	}
+	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+
 end)
