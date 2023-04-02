@@ -14,5 +14,6 @@ return require('packer').startup(function(use)
 		as = 'monokai-pro.nvim'
 	}
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+	use('theprimeagen/harpoon')
 
 end)
