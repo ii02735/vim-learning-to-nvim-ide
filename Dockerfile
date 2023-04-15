@@ -9,6 +9,7 @@ RUN apk add git neovim neovim-doc ripgrep # required for grep usage in neovim lu
 RUN apk add gcc musl-dev
 # cc1 build-time dependency required for php treesitter's parser
 RUN apk add build-base
+RUN apk add --update npm
 USER noroot
 WORKDIR /home/noroot
 
