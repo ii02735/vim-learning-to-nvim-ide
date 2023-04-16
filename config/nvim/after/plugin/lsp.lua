@@ -1,10 +1,9 @@
 -- LSP configuration file
 
 local lsp = require('lsp-zero')
-
-lsp.preset('recommended')
-
-lsp.ensure_installed({
+local configs = require('lspconfig.configs')
+local lspconfig = require('lspconfig')
+local servers = {
 	'tsserver',
 	'eslint',
 	'intelephense',
@@ -13,30 +12,55 @@ lsp.ensure_installed({
 	'jsonls',
 	'marksman',
 	'pyright',
-	'sqlls',
-})
+	-- 'gopls' : requires go interpreter to be installed
+}
 
--- completion settings
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
+lsp.preset('recommended')
 
-	-- Go to previous item on completion list
-	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-	-- Go to next item on completion list
-	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	-- Select element on completion list
-	['<C-y>'] = cmp.mapping.confirm({ select = true }),
-	-- Start the completion
-	['<C-space>'] = cmp.mapping.complete()
-})
+lsp.ensure_installed(servers)
 
 lsp.set_preferences({
-	sign_icons = { }
+	sign_icons = {}
 })
 
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings
-})
+lsp.on_attach(function(client, bufnr)
+	local opts = {buffer = bufnr, remap = false}
+	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+end)
 
 lsp.setup()
+
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+for _, lsp in ipairs(servers) do
+	lspconfig[lsp].setup {
+	  -- on_attach = my_custom_on_attach,
+	  capabilities = capabilities,
+	}
+end
+-- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+
+-- -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+-- --     capabilities = capabilities
+-- -- }
+
+-- lspconfig.tsserver.setup {
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach
+-- }
+
+-- lspconfig.intelephense.setup {
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach
+-- }
+
+-- -- lspconfig.html.setup {
+-- -- 	capabilities = capabilities,
+-- -- 	on_attach = on_attach
+-- -- }
+
+-- lspconfig.pyright.setup {
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach
+-- }
