@@ -10,6 +10,10 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 	use {
+		'nvim-lualine/lualine.nvim', -- add lualine
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
+	use {
 		'https://gitlab.com/__tpb/monokai-pro.nvim',
 		as = 'monokai-pro.nvim'
 	}
@@ -37,6 +41,7 @@ return require('packer').startup(function(use)
 		{'hrsh7th/cmp-path'},         -- Optional
 		{'saadparwaiz1/cmp_luasnip'}, -- Optional
 		{'hrsh7th/cmp-nvim-lua'},     -- Optional
+		{'hrsh7th/cmp-cmdline'},
 
 		-- Snippets
 		{'L3MON4D3/LuaSnip'},             -- Required
@@ -52,6 +57,8 @@ return require('packer').startup(function(use)
 		config = function()
 			require("nvim-tree").setup {}
 		end
-	}
+	},
+	use "terrortylor/nvim-comment", -- make comments easier
+	use {"akinsho/toggleterm.nvim", tag = '*' } -- open a terminal
 }
 end)
