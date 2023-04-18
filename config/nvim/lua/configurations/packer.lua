@@ -59,6 +59,7 @@ return require('packer').startup(function(use)
 		end
 	},
 	use "terrortylor/nvim-comment", -- make comments easier
-	use {"akinsho/toggleterm.nvim", tag = '*' } -- open a terminal
+	use {"akinsho/toggleterm.nvim", tag = '*' }, -- open a terminal
+	use 'mfussenegger/nvim-lint' -- asynchronous linter
 }
 end)

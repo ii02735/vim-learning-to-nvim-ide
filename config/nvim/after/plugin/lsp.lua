@@ -35,32 +35,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup {
-	  -- on_attach = my_custom_on_attach,
-	  capabilities = capabilities,
+	-- on_attach = my_custom_on_attach,
+	capabilities = capabilities,
 	}
 end
--- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-
--- -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
--- --     capabilities = capabilities
--- -- }
-
--- lspconfig.tsserver.setup {
--- 	capabilities = capabilities,
--- 	on_attach = on_attach
--- }
-
--- lspconfig.intelephense.setup {
--- 	capabilities = capabilities,
--- 	on_attach = on_attach
--- }
-
--- -- lspconfig.html.setup {
--- -- 	capabilities = capabilities,
--- -- 	on_attach = on_attach
--- -- }
-
--- lspconfig.pyright.setup {
--- 	capabilities = capabilities,
--- 	on_attach = on_attach
--- }

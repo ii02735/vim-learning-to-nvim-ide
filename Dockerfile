@@ -16,10 +16,12 @@ RUN apk add --no-cache wget
 USER noroot
 WORKDIR /home/noroot
 
-COPY --chown=noroot config /home/noroot/.config
+RUN mkdir /home/noroot/.local /home/noroot/intelephense
 
-RUN mkdir ~/.local ~/intelephense
-COPY licence.txt ~/intelephense
+COPY --chown=noroot config /home/noroot/.config
+COPY --chown=noroot licence.txt /home/noroot/intelephense/
+COPY --chown=noroot psalm.dist.xml /home/noroot/psalm.dist.xml
+
 
 # Don't forget to run ":so" inside of packer.vim !!!
 
