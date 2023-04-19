@@ -7,7 +7,7 @@ local servers = {
 	'tsserver',
 	'eslint',
 	'intelephense',
-	'psalm',
+--	'psalm',
 	'html',
 	'jsonls',
 	'marksman',

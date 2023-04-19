@@ -76,3 +76,25 @@ Et comme indiqué dans la **configuration par défaut** du LSP de Intelephense (
 ## Psalm
 
 Similairement à Intelephense (https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#psalm), il est nécessaire dans le dossier d'avoir un fichier `psalm.xml`.
+
+Il faut également installer le **binaire psalm** dans le répertoire de son projet :
+
+```sh
+composer require vimeo/psalm
+```
+
+Ensuite, le linter fonctionnera *depuis le répertoire racine* du projet (où on a le dossier `vendor` de composer en général).
+Ainsi, si l'on souhaite éditer un fichier, il faut le faire *depuis le répertoire racine* (et non en se déplaçant).
+
+OK : 
+
+```
+nvim src/script.php
+```
+
+KO :
+
+```sh
+cd src
+nvim script.php
+```
